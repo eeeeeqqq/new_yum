@@ -1,0 +1,26 @@
+source = "7782,CLARK,MANAGER,SALES,5000$7934,MILLER,SALESMAN,SALES,3000$7369,SMITH,ANALYST,RESEARCH,2000"
+employee_list = source.split("$")
+# print(employee_list)
+flag = True
+while flag:
+    all_emp = {}
+    for i in range(0, len(employee_list)):
+        e = employee_list[i].split(",")
+        employee = {"no": e[0], 'name': e[1], 'job': e[2], 'department': e[3], 'salary': e[4]}
+        all_emp[employee['no']] = employee
+    empno = input("请输入员工编号:")
+    emp = all_emp.get(empno)
+    if empno in all_emp:
+        print("工号:{no},姓名:{name},岗位:{job},部门:{department},工资:{salary}".format_map(emp))
+        judge = input('您的操作已经完成，请重新选择您的操作!\n输入“1”，则重新运行;输入其他任意键退出')
+        if judge == '1':
+            continue
+        else:
+            break
+    else:
+        print("员工信息不存在")
+        judge = input('输入“1”，则重新输入;输入其他任意键退出')
+        if judge == '1':
+            continue
+        else:
+            break
